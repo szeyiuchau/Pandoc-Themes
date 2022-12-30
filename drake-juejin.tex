@@ -106,19 +106,19 @@
 %dimensions
 \usepackage[a4paper,textwidth=1200\px,top=20\px,left=30\px,right=30\px,bottom=100\px]{geometry}
 %grid
-\usepackage{background}
-\backgroundsetup{
-	scale=1,
-	position={0,0},
-	angle=0,
-	color=GridColor,
-	opacity=0.04,
-	contents={
-		\begin{tikzpicture}[overlay]
-			\draw[step=20\px,line width=0.6\px](current page.north west) grid (current page.south east);
-		\end{tikzpicture}
-	}
-}
+%\usepackage{background}
+%\backgroundsetup{
+%	scale=1,
+%	position={0,0},
+%	angle=0,
+%	color=GridColor,
+%	opacity=0.04,
+%	contents={
+%		\begin{tikzpicture}[overlay]
+%			\draw[step=20\px,line width=0.6\px](current page.north west) grid (current page.south east);
+%		\end{tikzpicture}
+%	}
+%}
 %fonts
 \usepackage{fontspec}
 	%-------set global color
@@ -146,6 +146,13 @@
 %bold
 \let\Textbf\textbf
 \renewcommand{\textbf}[1]{\textcolor{TitleColor}{\Textbf{#1}}}
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 \usepackage[most]{tcolorbox}
 \renewenvironment{quote}{

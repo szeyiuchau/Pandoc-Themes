@@ -178,6 +178,13 @@
 \titleformat{\subparagraph}{\fontsize{1.2em}{\baselineskip}\headingfont\color{white}}{}{}{}
 \titlespacing{\paragraph}{0pt}{1em}{0.2em}
 \raggedright
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[

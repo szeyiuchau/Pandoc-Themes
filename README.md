@@ -1,34 +1,13 @@
-![montage of pandoc themes](https://github.com/cab-1729/Random-host/blob/main/theme-montage.png?raw=true)
+## Pandoc-Themes
 
-# Pandoc-Themes
-General purpose themes for converting markdown to pdf using pandoc.
+This is a fork of [https://github.com/cab-1729/Pandoc-Themes](https://github.com/cab-1729/Pandoc-Themes).
 
-All in pure ```xelatex```, no Lua, no Perl.
+### Changes
 
-Each theme works independently of each other. The only dependency to a theme is its font folder.
+- Fixed a problem in `paradox-seraph.tex` in `orangeheart.tex` that makes them unable to work with sub-lists.
 
-Examples for each theme stored in the _examples_ directory.
+- Fixed the error regarding `CSLReferences`. One might encounter an error message `LaTeX Error: Environment CSLReferences undefined.` when the `--citeproc` option is used. 
+    - The `--citeproc` option is not available on old versions of `pandoc`. This is not uncommon if one installs `pandoc` from `apt` on Debian-based systems. New versions can be fetched from [GitHub](https://github.com/jgm/pandoc/releases) directly.
+        - I found that the GitHub release version has a default user data directory different from that of the `apt` version. To prevent `pandoc` from complaining about not being able to find the data/template files, one might want to symlink `~/.local/share/pandoc` to `/usr/share/pandoc/data`. Note that the link target is meant to be `/usr/share/pandoc/data`, not `/usr/share/pandoc`.
 
-__Warning_: These templates are very liberal with packages and assume the user has the entirety of texlive installed._
-
-## Usage
-
-Symlink or copy the template files to your /usr/share/pandoc/data/templates/.
-
-Copy or symlink _pandoc-fonts_ to /usr/share/fonts/.
-
-```bash
-pandoc --pdf-engine=xelatex -f markdown -t pdf --template=name_of_template.tex /path/to/markdown/file.md > /path/to/pdf/file.pdf
-```
-Metadata from markdown file will not be given priority. Most of the things will be set by the templates. Metadata may be used to set only basic parameters like title, subject author, etc.
-
-## Other projects
-+ All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
-+ The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
-+ [typora-free](https://aur.archlinux.org/packages/typora-free) for the AUR was used for visual aid
-+ Themes are inspired from all those who wrote themes for Typora
-+ Of course, none of this would be possible without [pandoc](https://pandoc.org/) and [texlive](https://www.tug.org/texlive/)
-
-## Features not supported
-+ Highlight - Pandoc does not support highlight
-+ Footnotes - Typora and Pandoc deal with footnotes in very different ways, hence this feature is not implemented.
+- Removed the background grid in `drake-juejin.tex`. Occasionally the grid color/opacity would be rendered incorrectly and thus interferes with the contents.

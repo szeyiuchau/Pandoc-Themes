@@ -150,6 +150,13 @@
 \titlespacing{\subparagraph}{0pt}{30\px}{15\px}
 \raggedright
 \usepackage[most]{tcolorbox}
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
@@ -320,8 +327,8 @@
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(310:0.15\boxside);
 	}{CheckedColor}{\hspace*{\boxside-2\px}}
 }
+\let\Item\item
 \AtBeginEnvironment{itemize}{
-	\let\Item\item
 	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
 		\Item[#1]
 	}

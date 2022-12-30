@@ -174,6 +174,13 @@
 \titleformat{\subparagraph}{\fontsize{1.2em}{\baselineskip}\headingfont\color{black}}{}{}{}
 \titlespacing{\paragraph}{0pt}{1em}{0.2em}
 \raggedright
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
@@ -344,8 +351,8 @@
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(315:0.15\boxside);
 	}{PrimaryColor}{\hspace*{\boxside-2\px}}
 }
+\let\Item\item
 \AtBeginEnvironment{itemize}{
-	\let\Item\item
 	\renewcommand{\item}[1][\textcolor{PrimaryColor}\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
 		\Item[#1]
 	}

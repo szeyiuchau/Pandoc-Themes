@@ -129,6 +129,13 @@
 \titlespacing{\subparagraph}{0pt}{2em}{1em}
 \raggedright
 \usepackage[most]{tcolorbox}
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[

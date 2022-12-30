@@ -117,6 +117,13 @@
 \titleformat{\subparagraph}{\fontsize{16\px}{\baselinestretch}\bfseries\heading}{}{}{}
 \raggedright
 \usepackage[most]{tcolorbox}
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 %https://tex.stackexchange.com/a/2430
 \renewenvironment{quote}%

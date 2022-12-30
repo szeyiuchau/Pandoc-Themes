@@ -125,6 +125,13 @@
 %bold
 \let\Textbf\textbf
 \renewcommand{\textbf}[1]{\textcolor{TitleColor}{\Textbf{#1}}}
+%add the CSLReference environment
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 %quotes
 \usepackage[most]{tcolorbox}
 \renewenvironment{quote}{
