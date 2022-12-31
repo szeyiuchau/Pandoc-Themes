@@ -150,13 +150,31 @@
 \titlespacing{\subparagraph}{0pt}{30\px}{15\px}
 \raggedright
 \usepackage[most]{tcolorbox}
-%add the CSLReference environment
+$if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
-\newenvironment{CSLReferences}%
-  {\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
-  {\par}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+$endif$
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
@@ -267,7 +285,7 @@
 \let\EndLongtable\endlongtable
 \def\table#1{\Longtable{#1}}
 	%https://stackoverflow.com/a/3175486 second comment
-%deviation: not stretching table across width for aesthetics
+%deviation: not stretching table accross width for aesthetics
 %deviation: not making table head bold for user freedom
 \setlength{\tabcolsep}{1\px}
 \renewcommand{\arraystretch}{1.25}%eyeballing
@@ -327,8 +345,8 @@
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(310:0.15\boxside);
 	}{CheckedColor}{\hspace*{\boxside-2\px}}
 }
-\let\Item\item
 \AtBeginEnvironment{itemize}{
+	\let\Item\item
 	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
 		\Item[#1]
 	}

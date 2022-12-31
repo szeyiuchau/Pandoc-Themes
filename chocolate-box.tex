@@ -160,28 +160,46 @@
 %can't do anything about H6, pandoc doesn't assigne it anything
 \raggedright
 \usepackage[most]{tcolorbox}
-%add the CSLReference environment
+$if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
-\newenvironment{CSLReferences}%
-  {\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
-  {\par}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+$endif$
 %quotes
 %blockquote blockquote does not work in pandoc
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
-		notitle,
-		frame hidden,
-		interior hidden,
-		enhanced, %required for side bar
-		sharp corners,
-		boxrule=0pt,
-		colback=BackgroundColor,
-		coltext=TextColor,
-		boxsep=0em,
-		left=1em,
-		borderline west={3\px}{0pt}{HeaderColor}
+			notitle,
+			frame hidden,
+			interior hidden,
+			enhanced, %required for side bar
+			sharp corners,
+			boxrule=0pt,
+			colback=BackgroundColor,
+			coltext=TextColor,
+			boxsep=0em,
+			left=1em,
+			borderline west={3\px}{0pt}{HeaderColor}
 	]
 }{
 	\end{tcolorbox}
@@ -191,18 +209,18 @@
 %code background
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
-		notitle,
-		breakable,
-		frame hidden,
-		sharp corners,
-		boxrule=0pt,
-		coltext=TextColor,
-		colback=ShadeColor,
-		boxsep=0.125em,
-		left=0mm,
-		right=0mm,
-		top=0mm,
-		bottom=0mm
+			notitle,
+			breakable,
+			frame hidden,
+			sharp corners,
+			boxrule=0pt,
+			coltext=TextColor,
+			colback=ShadeColor,
+			boxsep=0.125em,
+			left=0mm,
+			right=0mm,
+			top=0mm,
+			bottom=0mm
 	]
 }{
 	\end{tcolorbox}
