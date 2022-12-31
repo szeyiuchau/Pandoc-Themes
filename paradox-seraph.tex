@@ -369,8 +369,8 @@ $endif$
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(315:0.15\boxside);
 	}{PrimaryColor}{\hspace*{\boxside-2\px}}
 }
+\let\Item\item
 \AtBeginEnvironment{itemize}{
-	\let\Item\item
 	\renewcommand{\item}[1][\textcolor{PrimaryColor}\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
 		\Item[#1]
 	}
